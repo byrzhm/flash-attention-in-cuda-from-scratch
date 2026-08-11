@@ -21,7 +21,7 @@ python scaffold.py
 - [x] **9.** qk_scores
 - [x] **10.** softmax_rows
 - [x] **11.** pv_matmul
-- [ ] **12.** naive_attention
+- [x] **12.** naive_attention
 - [ ] **13.** online_max
 - [ ] **14.** correction_factor
 - [ ] **15.** update_running_sum

@@ -212,8 +212,37 @@ pv_matmul (const float* p, const float* v, float* out, int seq_len, int head_dim
     }
 }
 
-# Step 12 - naive_attention (not yet solved)
-# TODO: implement
+# Step 12 - naive_attention
+void naive_attention (const float* d_q, const float* d_k, const float* d_v, float* d_out, int seq_len, int head_dim) {
+    // allocate scratch, launch qk_scores -> softmax_rows -> pv_matmul, free scratch
+    float* d_scores;
+    float* d_p;
+    cudaMalloc (&d_scores, seq_len * seq_len * sizeof (float));
+    d_p = d_scores;
+
+    dim3 blockDim;
+    dim3 gridDim;
+
+    blockDim = dim3 (16, 16);
+    gridDim  = dim3 ((seq_len + blockDim.x - 1) / blockDim.x,
+     (seq_len + blockDim.y - 1) / blockDim.y);
+
+    qk_scores<<<gridDim, blockDim>>> (d_q, d_k, d_scores, seq_len, head_dim);
+
+    blockDim = dim3 (256);
+    gridDim  = dim3 (seq_len);
+
+    softmax_rows<<<gridDim, blockDim>>> (d_scores, seq_len, seq_len);
+
+    blockDim = dim3 (16, 16);
+    gridDim  = dim3 ((head_dim + blockDim.x - 1) / blockDim.x,
+     (seq_len + blockDim.y - 1) / blockDim.y);
+
+    pv_matmul<<<gridDim, blockDim>>> (d_p, d_v, d_out, seq_len, head_dim);
+
+    // cudaMemcpy(void *dst, const void *src, size_t count, enum cudaMemcpyKind kind);
+    cudaFree (d_scores);
+}
 
 # Step 13 - online_max (not yet solved)
 # TODO: implement
