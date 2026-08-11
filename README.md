@@ -13,7 +13,7 @@ python scaffold.py
 - [x] **1.** vector_add
 - [x] **2.** scale_array
 - [x] **3.** elementwise_exp
-- [ ] **4.** row_max
+- [x] **4.** row_max
 - [ ] **5.** row_sum
 - [x] **6.** dot_product
 - [ ] **7.** matmul
