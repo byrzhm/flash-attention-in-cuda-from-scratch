@@ -18,7 +18,7 @@ python scaffold.py
 - [x] **6.** dot_product
 - [x] **7.** matmul
 - [x] **8.** transpose
-- [ ] **9.** qk_scores
+- [x] **9.** qk_scores
 - [ ] **10.** softmax_rows
 - [ ] **11.** pv_matmul
 - [ ] **12.** naive_attention
