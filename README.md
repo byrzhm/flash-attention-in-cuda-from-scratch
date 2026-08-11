@@ -20,7 +20,7 @@ python scaffold.py
 - [x] **8.** transpose
 - [x] **9.** qk_scores
 - [x] **10.** softmax_rows
-- [ ] **11.** pv_matmul
+- [x] **11.** pv_matmul
 - [ ] **12.** naive_attention
 - [ ] **13.** online_max
 - [ ] **14.** correction_factor

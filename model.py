@@ -196,8 +196,21 @@ __global__ void softmax_rows (float* matrix, int rows, int cols) {
         row[i] = expf(row[i] - maxVal) * inv_sum;
 }
 
-# Step 11 - pv_matmul (not yet solved)
-# TODO: implement
+# Step 11 - pv_matmul
+__global__ void
+pv_matmul (const float* p, const float* v, float* out, int seq_len, int head_dim) {
+    // compute out[i, d] = sum_j p[i, j] * v[j, d]
+    int i = blockDim.y * blockIdx.y + threadIdx.y;
+    int d = blockDim.x * blockIdx.x + threadIdx.x;
+
+    if (i < seq_len && d < head_dim) {
+        float acc = 0.0f;
+        for (int j = 0; j < seq_len; j++) {
+            acc += p[i * seq_len + j] * v[j * head_dim + d];
+        }
+        out[i * head_dim + d] = acc;
+    }
+}
 
 # Step 12 - naive_attention (not yet solved)
 # TODO: implement
