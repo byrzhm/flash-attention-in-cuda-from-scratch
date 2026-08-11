@@ -24,8 +24,14 @@ __global__ void scale_array(float* a, float scalar, int n) {
     }
 }
 
-# Step 3 - elementwise_exp (not yet solved)
-# TODO: implement
+# Step 3 - elementwise_exp
+__global__ void elementwise_exp(float* a, int n) {
+    // replace each a[i] with expf(a[i])
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    if (idx < n) {
+        a[idx] = expf(a[idx]);
+    }
+}
 
 # Step 4 - row_max (not yet solved)
 # TODO: implement
