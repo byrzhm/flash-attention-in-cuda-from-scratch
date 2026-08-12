@@ -26,8 +26,8 @@ python scaffold.py
 - [x] **14.** correction_factor
 - [x] **15.** update_running_sum
 - [x] **16.** rescale_output
-- [ ] **17.** load_tile
-- [ ] **18.** tile_scores
+- [x] **17.** load_tile
+- [x] **18.** tile_scores
 - [ ] **19.** tile_rowmax
 - [ ] **20.** tile_exp
 - [ ] **21.** tile_rowsum

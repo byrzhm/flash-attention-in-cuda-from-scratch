@@ -270,11 +270,41 @@ __device__ void rescale_output(float* out_row, int head_dim, float correction) {
     }
 }
 
-# Step 17 - load_tile (not yet solved)
-# TODO: implement
+# Step 17 - load_tile
+// clang-format off
+__device__ void load_tile(const float* src, float* shared_dst,
+                          int src_row_start, int src_col_start,
+                          int src_rows, int src_cols,
+                          int tile_rows, int tile_cols,
+                          int thread_id, int num_threads) {
+    // clang-format on
+    // cooperatively copy the tile into shared_dst, zero-filling out-of-bounds positions.
+    for (int i = thread_id; i < tile_rows; i += num_threads) {
+        int row = src_row_start + i;
+        for (int j = 0; j < tile_cols; j++) {
+            int col = src_col_start + j;
+            shared_dst[i * tile_cols + j] = (col < src_cols) ? src[row * src_cols + col] : 0.0f;
+        }
+    }
+}
 
-# Step 18 - tile_scores (not yet solved)
-# TODO: implement
+# Step 18 - tile_scores
+// clang-format off
+__device__ void tile_scores(const float* q_tile, const float* k_tile, float* s_tile,
+                            int tile_q, int tile_k, int head_dim, float scale,
+                            int thread_id, int num_threads) {
+    // clang-format on
+    // cooperatively fill s_tile[i, j] = scale * dot(q_tile[i, :], k_tile[j, :])
+    for (int idx = thread_id; idx < tile_q * tile_k; idx += num_threads) {
+        int i = idx / tile_k;
+        int j = idx % tile_k;
+        float acc = 0.0f;
+        for (int k = 0; k < head_dim; k++) {
+            acc += q_tile[i * head_dim + k] * k_tile[j * head_dim + k];
+        }
+        s_tile[idx] = acc * scale;
+    }
+}
 
 # Step 19 - tile_rowmax (not yet solved)
 # TODO: implement
