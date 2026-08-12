@@ -24,7 +24,7 @@ python scaffold.py
 - [x] **12.** naive_attention
 - [x] **13.** online_max
 - [x] **14.** correction_factor
-- [ ] **15.** update_running_sum
+- [x] **15.** update_running_sum
 - [ ] **16.** rescale_output
 - [ ] **17.** load_tile
 - [ ] **18.** tile_scores
