@@ -283,7 +283,7 @@ __device__ void load_tile(const float* src, float* shared_dst,
         int row = src_row_start + i;
         for (int j = 0; j < tile_cols; j++) {
             int col = src_col_start + j;
-            shared_dst[i * tile_cols + j] = (col < src_cols) ? src[row * src_cols + col] : 0.0f;
+            shared_dst[i * tile_cols + j] = (row < src_rows && col < src_cols) ? src[row * src_cols + col] : 0.0f;
         }
     }
 }
@@ -388,8 +388,12 @@ __device__ void accumulate_pv (const float* p_tile, const float* v_tile, float* 
     }
 }
 
-# Step 23 - flash_attention_kernel (not yet solved)
-# TODO: implement
+# Step 23 - flash_attention_kernel
+__global__ void flash_attention_kernel(const float* q, const float* k, const float* v,
+                                       float* out, int seq_len, int head_dim,
+                                       int tile_q, int tile_k, float scale) {
+    // TODO: tiled fused attention using shared memory and online softmax.
+}
 
 # Step 24 - flash_attention_launcher (not yet solved)
 # TODO: implement

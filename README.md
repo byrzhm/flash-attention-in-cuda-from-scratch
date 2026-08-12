@@ -32,7 +32,7 @@ python scaffold.py
 - [x] **20.** tile_exp
 - [x] **21.** tile_rowsum
 - [x] **22.** accumulate_pv
-- [ ] **23.** flash_attention_kernel
+- [x] **23.** flash_attention_kernel
 - [ ] **24.** flash_attention_launcher
 - [ ] **25.** causal_mask
 - [ ] **26.** flash_attention_causal_kernel
