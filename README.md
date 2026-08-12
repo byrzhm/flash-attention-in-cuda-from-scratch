@@ -28,7 +28,7 @@ python scaffold.py
 - [x] **16.** rescale_output
 - [x] **17.** load_tile
 - [x] **18.** tile_scores
-- [ ] **19.** tile_rowmax
+- [x] **19.** tile_rowmax
 - [ ] **20.** tile_exp
 - [ ] **21.** tile_rowsum
 - [ ] **22.** accumulate_pv
