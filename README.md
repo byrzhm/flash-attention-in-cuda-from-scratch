@@ -22,7 +22,7 @@ python scaffold.py
 - [x] **10.** softmax_rows
 - [x] **11.** pv_matmul
 - [x] **12.** naive_attention
-- [ ] **13.** online_max
+- [x] **13.** online_max
 - [ ] **14.** correction_factor
 - [ ] **15.** update_running_sum
 - [ ] **16.** rescale_output
