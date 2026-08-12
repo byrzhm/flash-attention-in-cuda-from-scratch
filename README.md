@@ -30,7 +30,7 @@ python scaffold.py
 - [x] **18.** tile_scores
 - [x] **19.** tile_rowmax
 - [x] **20.** tile_exp
-- [ ] **21.** tile_rowsum
+- [x] **21.** tile_rowsum
 - [ ] **22.** accumulate_pv
 - [ ] **23.** flash_attention_kernel
 - [ ] **24.** flash_attention_launcher

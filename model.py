@@ -354,8 +354,23 @@ __device__ void tile_exp(float* s_tile, const float* row_max,
     }
 }
 
-# Step 21 - tile_rowsum (not yet solved)
-# TODO: implement
+# Step 21 - tile_rowsum
+// clang-format off
+__device__ void tile_rowsum(const float* p_tile, float* row_sum_out,
+                            int tile_q, int tile_k,
+                            int thread_id, int num_threads) {
+    // clang-format on
+    // cooperatively fill row_sum_out[r] with the sum of p_tile row r
+
+    // one thread per row
+    for (int r = thread_id; r < tile_q; r += num_threads) {
+        float row_sum = 0.0f;
+        for (int c = 0; c < tile_k; c++) {
+            row_sum += p_tile[r * tile_k + c];
+        }
+        row_sum_out[r] = row_sum;
+    }
+}
 
 # Step 22 - accumulate_pv (not yet solved)
 # TODO: implement
