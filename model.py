@@ -250,8 +250,11 @@ __device__ float online_max(float old_max, float new_val) {
     return fmaxf(old_max, new_val);
 }
 
-# Step 14 - correction_factor (not yet solved)
-# TODO: implement
+# Step 14 - correction_factor
+__device__ float correction_factor (float old_max, float new_max) {
+    // return the scalar used to rescale running statistics
+    return expf(old_max - new_max);
+}
 
 # Step 15 - update_running_sum (not yet solved)
 # TODO: implement

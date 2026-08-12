@@ -23,7 +23,7 @@ python scaffold.py
 - [x] **11.** pv_matmul
 - [x] **12.** naive_attention
 - [x] **13.** online_max
-- [ ] **14.** correction_factor
+- [x] **14.** correction_factor
 - [ ] **15.** update_running_sum
 - [ ] **16.** rescale_output
 - [ ] **17.** load_tile
