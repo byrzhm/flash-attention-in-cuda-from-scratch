@@ -35,7 +35,7 @@ python scaffold.py
 - [x] **23.** flash_attention_kernel
 - [x] **24.** flash_attention_launcher
 - [x] **25.** causal_mask
-- [ ] **26.** flash_attention_causal_kernel
+- [x] **26.** flash_attention_causal_kernel
 
 ---
 
